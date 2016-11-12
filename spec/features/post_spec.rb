@@ -21,8 +21,9 @@ describe 'navigate' do
 
     it 'has a list of posts' do
       post1 = #Post.create(date: Date.today, rationale: "Post1",user_id: @user.id)
-              FactoryGirl.build_stubbed(:post)
+              FactoryGirl.build_stubbed(:post) 
       post2 = FactoryGirl.build_stubbed(:second_post)
+      #build_stubbed不會存取資料庫，而是用模擬的方式，所以會比用'create'還快
       visit posts_path
       expect(page).to have_content(/Rationale|content/) #regular expression
     end
