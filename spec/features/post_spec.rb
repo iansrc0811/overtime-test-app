@@ -1,16 +1,17 @@
+
 require 'rails_helper'
 
 describe 'navigate' do
-  before do  #先進行登入
-   # @user = User.create(email: "test@test.com", password: 'abcedfg', 
-   #     password_confirmation: "abcedfg" , first_name: "john", last_name: "Snow")
+  before do
     @user = FactoryGirl.create(:user)
     login_as(@user, :scope => :user)
   end
+
   describe 'index' do
     before do
       visit posts_path
     end
+
     it 'can be reached successfully' do
       expect(page.status_code).to eq(200)
     end
@@ -20,27 +21,37 @@ describe 'navigate' do
     end
 
     it 'has a list of posts' do
-      post1 = #Post.create(date: Date.today, rationale: "Post1",user_id: @user.id)
-              FactoryGirl.build_stubbed(:post) 
+      post1 = FactoryGirl.build_stubbed(:post)
       post2 = FactoryGirl.build_stubbed(:second_post)
-      #build_stubbed不會存取資料庫，而是用模擬的方式，所以會比用'create'還快
       visit posts_path
-      expect(page).to have_content(/Rationale|content/) #regular expression
+      expect(page).to have_content(/Rationale|content/)
     end
   end
 
   describe 'new' do
-    it 'has a link to new a post from homepage' do
+    it 'has a link from the homepage' do
       visit root_path
-      click_link("new_post_from_nav") #id-to-link
+
+      click_link("new_post_from_nav")
+      expect(page.status_code).to eq(200)
+    end
+  end
+
+  describe 'delete' do
+    it 'can be deleted' do
+      @post = FactoryGirl.create(:post)
+      visit posts_path
+
+      click_link("delete_post_#{@post.id}_from_index")
       expect(page.status_code).to eq(200)
     end
   end
 
   describe 'creation' do
-    before do 
+    before do
       visit new_post_path
     end
+
     it 'has a new form that can be reached' do
       expect(page.status_code).to eq(200)
     end
@@ -62,13 +73,14 @@ describe 'navigate' do
     end
   end
 
-  describe 'edit' do 
+  describe 'edit' do
     before do
       @post = FactoryGirl.create(:post)
     end
 
     it 'can be reached by clicking edit on index page' do
       visit posts_path
+
       click_link("edit_#{@post.id}")
       expect(page.status_code).to eq(200)
     end
