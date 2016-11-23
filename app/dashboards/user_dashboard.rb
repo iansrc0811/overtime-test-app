@@ -36,7 +36,6 @@ class UserDashboard < Administrate::BaseDashboard
     :posts,
     :id,
     :email,
-    :encrypted_password,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -45,7 +44,6 @@ class UserDashboard < Administrate::BaseDashboard
     :posts,
     :id,
     :email,
-    :encrypted_password,
     :reset_password_token,
     :reset_password_sent_at,
     :remember_created_at,
@@ -67,7 +65,6 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :posts,
     :email,
-    :encrypted_password,
     :reset_password_token,
     :reset_password_sent_at,
     :remember_created_at,
