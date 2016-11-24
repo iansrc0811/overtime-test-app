@@ -14,7 +14,8 @@ FactoryGirl.define do
     password_confirmation "asdfasdf"
   end
 
-  factory :admin_user, class: "AdminUser" do
+  factory :admin_user, class: "AdminUser" do 
+  #  一個model要建立第二個(或更多)的factory時，就要使用到'class' , class名似乎是自訂? 不確定，待查
     first_name 'Admin'
     last_name 'User'
     email { generate :email }
