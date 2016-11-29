@@ -5,7 +5,9 @@
 # If you want to add pagination or other controller-level concerns,
 # you're free to overwrite the RESTful controller actions.
 module Admin
-  def self.admin_types
+
+  #設定Admin user 的type name, user type設定為陣列中的值就是admin user
+  def self.admin_types #之後若要新增user type 就可以在此新增，而不用寫死在程式碼 
     ['AdminUser']
   end
 
@@ -15,7 +17,10 @@ module Admin
 
 
     def authenticate_admin
-      unless Admin.admin_types.include?(current_user.try(:type))
+      unless Admin.admin_types.include?(current_user.try(:type)) 
+      #用這個方法呼叫上面所寫的admin_types方法
+      #而不用直接在這邊寫死admin type name
+      #unless = if not
         flash[:alert] = "Your are not authorized to access this page"
         redirect_to(root_path)
       end

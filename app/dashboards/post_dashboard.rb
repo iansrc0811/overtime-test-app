@@ -14,7 +14,11 @@ class PostDashboard < Administrate::BaseDashboard
     rationale: Field::Text.with_options(searchable: true),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
-    status: Field::Select.with_options(
+
+   
+    #status: Field::Text.with_options(searchable: true),
+    #也可以用下拉選單的方式:
+    status: Field::Select.with_options( # 產生下拉選單
       collection: Post.statuses.keys, 
       searchable: true),
   }.freeze
@@ -49,7 +53,6 @@ class PostDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :user,
-    :date,
     :rationale,
     :status
   ].freeze
