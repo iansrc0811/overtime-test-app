@@ -18,17 +18,8 @@
         <%= f.text_area :rationale, class: "form-control" %>
       </div>
 
-      <div class="form-group">
-        <%= f.radio_button :status, 'submitted' %>
-        <%= f.label :status, 'Submitted' %>
-
-        <%= f.radio_button :status, 'approved' %>
-        <%= f.label :status, 'Approved' %>
-
-        <%= f.radio_button :status, 'rejected' %>
-        <%= f.label :status, 'Rejected' %>
-      </div>
-      
+      <%= render partial: 'status', locals: { f: f } if current_user.type == 'AdminUser' %>
+      <!-- 不能直接寫 render 'status' 因為是在變數'f'底下 ，要用上面的寫法 -->
       <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
     <% end %>
   </div>
