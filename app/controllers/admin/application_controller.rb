@@ -7,7 +7,8 @@
 module Admin
 
   #設定Admin user 的type name, user type設定為陣列中的值就是admin user
-  def self.admin_types #之後若要新增user type 就可以在此新增，而不用寫死在程式碼 
+  #之後若要新增user type 就可以在此新增，而不用寫死在程式碼 
+  def self.admin_types 
     ['AdminUser']
   end
 
