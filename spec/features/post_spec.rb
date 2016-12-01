@@ -95,7 +95,7 @@ describe 'navigate' do
       login_as(non_authorized_user, :scope => :user)
 
       visit edit_post_path(@post)
-      expect(current_path).to eq(root_path)
+      expect(current_path).to eq(root_path) # Implement rediretion in application_controller.rb 
     end
   end
 end

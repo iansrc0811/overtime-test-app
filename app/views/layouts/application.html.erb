@@ -12,11 +12,10 @@
       <div class="col-md-12">
       <%= render 'shared/nav' %>
       <%= yield %>
-      <%= js add_gritter(flash[:notice], title: "Overtime APP Notification", sticky: false, time: 2000) %>
+
       </div>
     </div>
+    <%= render 'shared/alert' %>
   </div>
-
-
 </body>
 </html>
