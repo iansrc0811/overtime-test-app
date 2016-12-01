@@ -6,7 +6,7 @@ FactoryGirl.define do
     "test#{n}@example.com"
   end
 
-  factory :user do
+  factory :user do  #沒有指定class,FactoryGril會用'猜'的，在此例會猜是User
     first_name 'Jon'
     last_name 'Snow'
     email { generate :email } #由sequence產生
@@ -15,9 +15,17 @@ FactoryGirl.define do
   end
 
   factory :admin_user, class: "AdminUser" do 
-  #  一個model要建立第二個(或更多)的factory時，就要使用到'class' , class名似乎是自訂? 不確定，待查
+  #明確指定class (model) 為AdminUser 
     first_name 'Admin'
     last_name 'User'
+    email { generate :email }
+    password "asdfasdf"
+    password_confirmation "asdfasdf"
+  end
+
+  factory :non_authorized_user, class: "User" do 
+    first_name 'non'
+    last_name 'Authorized'
     email { generate :email }
     password "asdfasdf"
     password_confirmation "asdfasdf"
