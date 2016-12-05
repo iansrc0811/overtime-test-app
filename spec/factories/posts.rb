@@ -15,11 +15,11 @@ FactoryGirl.define do
     rationale "Some more content"
     user
   end
-
+=begin
   factory :post_from_other_user, class: "Post" do
     date Date.yesterday
     rationale "This post shouldn't be seen"
-    user { FactoryGirl.create(:non_authorized_user) }
+    user { FactoryGirl.create(:non_authorized_user) } #不知為何其實這是失效的，不會存到non_authorized_user
   end
-
+=end
 end
