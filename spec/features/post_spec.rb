@@ -28,6 +28,8 @@ describe 'navigate' do
     end
 
     it 'has a scope so that only post creators can see their posts' do
+      #不知為何如果post1 and post2 使用factorygirl建立，兩個post的user id是不同的(沒有如所想的存同一個user) 
+      #所以才用以下的寫法 手動建立post1 and post2
       post1 = Post.create(date: Date.today, rationale: "asdf", user_id: @user.id)
       post2 = Post.create(date: Date.today, rationale: "asdf", user_id: @user.id)
       non_authorized_user = FactoryGirl.create(:non_authorized_user)
@@ -35,7 +37,8 @@ describe 'navigate' do
       
       visit posts_path
 
-      expect(page).to_not have_content(/This post shouldn't be seen/)
+      expect(page).to_not have_content(/This post shouldn't be seen/) 
+      #'@posts = current_user.posts' in index action in 'post_controller.rb'
     end
   end
 
@@ -52,7 +55,7 @@ describe 'navigate' do
     it 'can be deleted' do
       @post = FactoryGirl.create(:post)
 
-      @post.update(user_id: @user.id)
+      @post.update(user_id: @user.id)# need to be refactored. same issue about factorygirl did not save @user.id to post
       visit posts_path
 
       click_link("delete_post_#{@post.id}_from_index")
