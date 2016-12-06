@@ -20,11 +20,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    authorize @post
+    authorize @post #pundit專用
   end
 
   def update
-    authorize @post
+    authorize @post #pundit專用
     
     if @post.update(post_params)
       redirect_to @post, notice: 'Your post was updated successfully'

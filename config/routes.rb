@@ -11,4 +11,6 @@ resources :admin_users
     
   devise_for :users, skip: [:registrations]
   root to:'static#home'
+
+  get "*path", to: redirect('/')
 end
