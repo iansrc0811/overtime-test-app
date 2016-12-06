@@ -34,7 +34,7 @@ describe 'navigate' do
       
       other_user = FactoryGirl.create(:non_authorized_user)
       post_from_other_user = Post.create(date: Date.today, rationale: "This post shounldn't be seen", user_id: other_user.id)
-      visit posts_path
+        visit posts_path
 
       expect(page).to_not have_content(/This post shouldn't be seen/) 
       #'@posts = current_user.posts' in index action in 'post_controller.rb'
