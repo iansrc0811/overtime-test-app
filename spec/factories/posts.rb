@@ -5,6 +5,7 @@ FactoryGirl.define do
   factory :post do
     date Date.today
     rationale "Some Rationale"
+    overtime_request 3.5
     user
   end
 
@@ -13,6 +14,7 @@ FactoryGirl.define do
    #明確指定class (model) 為Post
     date Date.yesterday
     rationale "Some more content"
+    overtime_request 0.5
     user
   end
 =begin
